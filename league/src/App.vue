@@ -1,13 +1,13 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <Header></Header>
+      <Header v-model="summoner"></Header>
 
     </v-app-bar>
 
     <v-main>
-        <v-container>
-        
+        <v-container v-if="summoner.accountId != 0">
+          <MatchList :summoner="summoner"></MatchList>
         </v-container>
     </v-main>
   </v-app>
@@ -15,10 +15,23 @@
 
 <script>
 import Header from './components/Header'
+import MatchList from './components/MatchList'
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    MatchList
+  },
+  data()  {
+    return{
+      summoner: {
+        accountId: '',
+        level: 0,
+      },
+    }
+  },
+  mounted(){
+    console.log(this.summoner)
   }
 }
 </script>

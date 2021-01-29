@@ -13,11 +13,29 @@
 import axios from 'axios'
 export default {
     name: "header",
+    props:{
+        value:{
+            Type: Object,
+            default: ''
+        }
+    },
+    computed:{
+        selected_summoner: {
+                get() {
+                    return this.value;
+                },
+                set(val) {
+                    if (val == null)
+                        val = 0;
+                    this.$emit('input', val);
+                }
+            }
+    },
     data(){
         return{
             regions: [],
             summoner_name: '',
-            selected_region: 'NA'
+            selected_region: 'NA',
         }
     },
     methods:{
@@ -35,7 +53,7 @@ export default {
                 var response = await axios.get(`https://localhost:44375/Summoner?summoner_name=${this.summoner_name}&region=${this.selected_region}`)
 
                 if(response.status === 200){
-                    console.log(response.data);
+                    this.selected_summoner = response.data;
                 }
             }
     },

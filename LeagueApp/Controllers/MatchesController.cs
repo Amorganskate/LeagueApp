@@ -17,19 +17,21 @@ namespace LeagueApp.Controllers
     public class MatchesController : ControllerBase
     {
         [HttpGet]
-        public RiotSharp.Endpoints.MatchEndpoint.MatchList Get()
+        public RiotSharp.Endpoints.MatchEndpoint.MatchList Get(string accountid)
         {
             var api = RiotApi.GetDevelopmentInstance("RGAPI-660382e2-41fd-4596-b88e-5a35894269a1");
 
-            try
+            if (accountid != null)
             {
-                return api.Match.GetMatchListAsync(Region.Na, "n66wz8wIST776e4rikLAiq1jEGtOZEGRpHN5Rj2tHrCiCu0").Result;
+                try
+                {
+                    return api.Match.GetMatchListAsync(Region.Na, accountid).Result;
+                }
+                catch (RiotSharpException ex)
+                {
+                    // Handle the exception however you want.
+                }
             }
-            catch (RiotSharpException ex)
-            {
-                // Handle the exception however you want.
-            }
-
             return default;
         }
     }
