@@ -18,15 +18,14 @@ namespace LeagueApp.Controllers
         // AccountID: n66wz8wIST776e4rikLAiq1jEGtOZEGRpHN5Rj2tHrCiCu0
         // Encrypted SummonerID: sM8KVoKcCFVyCXSOjlOci_U0daZiLPKMlF2dSVXAIt9VOFc
         [HttpGet]
-        public RiotSharp.Endpoints.SummonerEndpoint.Summoner Get()
+        public RiotSharp.Endpoints.SummonerEndpoint.Summoner Get(string summoner_name, Region region)
         {
             var api = RiotApi.GetDevelopmentInstance("RGAPI-660382e2-41fd-4596-b88e-5a35894269a1");
 
 
             try
             {
-
-                return api.Summoner.GetSummonerByNameAsync(Region.Na, "TiltMasterFlex1").Result;
+                return api.Summoner.GetSummonerByNameAsync(region, summoner_name).Result;
 
             }
             catch (RiotSharpException ex)
