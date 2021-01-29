@@ -20,7 +20,7 @@ namespace LeagueApp.Controllers
         [HttpGet]
         public RiotSharp.Endpoints.SummonerEndpoint.Summoner Get(string summoner_name, Region region)
         {
-            var api = RiotApi.GetDevelopmentInstance("RGAPI-660382e2-41fd-4596-b88e-5a35894269a1");
+            var api = RiotApi.GetDevelopmentInstance("RGAPI-70d561bc-fc18-4b87-b517-a51e55ccf0ac");
 
 
             try

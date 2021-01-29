@@ -2,7 +2,7 @@
     <v-row>
         <v-col>
             <v-list>
-                <template v-for="(match, index) in matches.matches">
+                <template v-for="(match, index) in matches">
                     {{match.gameId}} {{index}}
                 </template>
             </v-list>
