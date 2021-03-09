@@ -4,7 +4,6 @@ using Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
-using RiotSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,18 +18,7 @@ namespace LeagueApp.Controllers
 
         public object Get()
         {
-            var api = RiotApi.GetDevelopmentInstance("RGAPI-70d561bc-fc18-4b87-b517-a51e55ccf0ac");
-
-            try
-            {
-                var allVersion = api.StaticData.Versions.GetAllAsync().Result;
-                var latestVersion = allVersion[0]; // Example of version: "10.23.1"
-                return api.StaticData.Champions.GetAllAsync(latestVersion).Result.Champions.Values;
-            }
-            catch (RiotSharpException ex)
-            {
-                // Handle the exception however you want.
-            }
+            
 
             return default;
         }
