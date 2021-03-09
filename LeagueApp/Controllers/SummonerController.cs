@@ -20,12 +20,12 @@ namespace LeagueApp.Controllers
         [HttpGet]
         public RiotSharp.Endpoints.SummonerEndpoint.Summoner Get(string summoner_name, Region region)
         {
-            var api = RiotApi.GetDevelopmentInstance("RGAPI-70d561bc-fc18-4b87-b517-a51e55ccf0ac");
+            var api = RiotApi.GetDevelopmentInstance("RGAPI-c8c3e2a4-edaf-4c3d-ad4f-dc32d540da9c");
 
 
             try
             {
-                return api.Summoner.GetSummonerByNameAsync(region, summoner_name).Result;
+                return api.Summoner.GetSummonerBySummonerIdAsync(region, "sM8KVoKcCFVyCXSOjlOci_U0daZiLPKMlF2dSVXAIt9VOFc").Result;
 
             }
             catch (RiotSharpException ex)
