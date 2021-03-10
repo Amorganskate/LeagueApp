@@ -23,5 +23,5 @@ jobs:
       run:  dotnet build LeagueApp --configuration Release 
       
     - name: Run Automated Tests
-      run: dotnet test -c Release --no-build
+      run: dotnet test LeagueApp --no-build
       
