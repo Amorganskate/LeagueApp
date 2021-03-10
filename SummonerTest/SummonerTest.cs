@@ -14,6 +14,7 @@ namespace SummonerTest
         {
             var mock =  new Mock<ISummonerService>();
 
+
             mock.Setup(repo => repo.GetSummonerDetails("tiltmasterflex"));
             var controller = new SummonerController(mock.Object);
 
