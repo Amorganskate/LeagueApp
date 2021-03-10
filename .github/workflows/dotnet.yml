@@ -20,7 +20,7 @@ jobs:
         
    
     - name: Build
-      run:  dotnet build --configuration Release 
+      run:  dotnet build LeagueApp --configuration Release 
       
     - name: Run Automated Tests
       run: dotnet test -c Release --no-build
