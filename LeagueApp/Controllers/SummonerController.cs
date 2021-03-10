@@ -1,4 +1,5 @@
-﻿using LeagueApp.Code;
+﻿using Interfaces;
+using LeagueApp.Code;
 using Microsoft.AspNetCore.Mvc;
 using MingweiSamuel.Camille;
 using MingweiSamuel.Camille.Enums;
@@ -11,19 +12,22 @@ using System.Threading.Tasks;
 namespace LeagueApp.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class SummonerController : ControllerBase
     {
+        private readonly ISummonerService _summonerService;
+
+        public SummonerController(ISummonerService summonerService)
+        {
+            _summonerService = summonerService;
+        }
+
         // AccountID: n66wz8wIST776e4rikLAiq1jEGtOZEGRpHN5Rj2tHrCiCu0
         // Encrypted SummonerID: sM8KVoKcCFVyCXSOjlOci_U0daZiLPKMlF2dSVXAIt9VOFc
         [HttpGet]
-        public object Get(string SummonerName)
+        public async Task<IActionResult> GetSummonerDetails(string SummonerName)
         {
-            var riotApi = RiotApi.NewInstance("RGAPI-c8c3e2a4-edaf-4c3d-ad4f-dc32d540da9c");
-
-            return riotApi.SummonerV4.GetBySummonerName(Region.NA, SummonerName);
+            return Ok(await _summonerService.GetSummonerDetails(SummonerName));
         }
-
-        
     }
 }
