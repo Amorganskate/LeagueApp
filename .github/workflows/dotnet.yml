@@ -20,10 +20,8 @@ jobs:
         
    
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --configuration LeagueApp
       
     - name: Run Automated Tests
       run: dotnet test -c Release --no-build
       
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
