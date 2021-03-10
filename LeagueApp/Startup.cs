@@ -29,6 +29,7 @@ namespace LeagueApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<ISummonerService, SummonerService>();
+            services.AddScoped<IMatchsService, MatchsService>();
 
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
                                                                     .AllowAnyMethod()
