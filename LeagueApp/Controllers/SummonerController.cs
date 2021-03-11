@@ -1,8 +1,10 @@
 ﻿using Interfaces;
 using LeagueApp.Code;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MingweiSamuel.Camille;
 using MingweiSamuel.Camille.Enums;
+using MingweiSamuel.Camille.SummonerV4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,19 +17,26 @@ namespace LeagueApp.Controllers
     [Route("api/[controller]")]
     public class SummonerController : ControllerBase
     {
-        private readonly ISummonerService _summonerService;
+        private readonly ISummonerService summonerService;
 
         public SummonerController(ISummonerService summonerService)
         {
-            _summonerService = summonerService;
+            this.summonerService = summonerService;
         }
 
         // AccountID: n66wz8wIST776e4rikLAiq1jEGtOZEGRpHN5Rj2tHrCiCu0
         // Encrypted SummonerID: sM8KVoKcCFVyCXSOjlOci_U0daZiLPKMlF2dSVXAIt9VOFc
         [HttpGet]
-        public async Task<IActionResult> GetSummonerDetails(string SummonerName)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Summoner>))]
+        public IActionResult GetSummonerDetails(string SummonerName)
         {
-            return Ok(await _summonerService.GetSummonerDetails(SummonerName));
+            var summonerDetails = summonerService.GetSummonerDetails(SummonerName);
+            if(summonerDetails == null)
+            {
+                return NotFound();
+            }
+            return Ok(summonerService.GetSummonerDetails(SummonerName));
         }
     }
 }

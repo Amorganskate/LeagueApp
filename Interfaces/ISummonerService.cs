@@ -6,7 +6,7 @@ namespace Interfaces
 {
     public interface ISummonerService
     {
-        Task<Summoner> GetSummonerDetails(string SummonerName);
+        Summoner GetSummonerDetails(string SummonerName);
 
     }
 }

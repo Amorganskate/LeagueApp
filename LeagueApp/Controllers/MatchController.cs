@@ -1,6 +1,7 @@
 ﻿using Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MingweiSamuel.Camille.MatchV4;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,19 +13,27 @@ namespace LeagueApp.Controllers
     [ApiController]
     public class MatchController : ControllerBase
     {
-        private readonly IMatchsService _matchService;
+        private readonly IMatchsService matchService;
 
         public MatchController(IMatchsService summonerService)
         {
-            _matchService = summonerService;
+            this.matchService = summonerService;
         }
 
         // AccountID: n66wz8wIST776e4rikLAiq1jEGtOZEGRpHN5Rj2tHrCiCu0
         // Encrypted SummonerID: sM8KVoKcCFVyCXSOjlOci_U0daZiLPKMlF2dSVXAIt9VOFc
-        [HttpGet]
+        [HttpGet("{AccountId}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Matchlist>))]
         public async Task<IActionResult> GetMatchList(string AccountId)
         {
-            return Ok(await _matchService.GetMatchList(AccountId));
+            var matchList = await matchService.GetMatchList(AccountId);
+            if(matchList == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(matchList);
         }
     }
 }

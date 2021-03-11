@@ -11,11 +11,11 @@ namespace LeagueApp.Services
 {
     public class SummonerService : ISummonerService
     {
-        public async Task<MingweiSamuel.Camille.SummonerV4.Summoner> GetSummonerDetails(string SummonerName)
+        public MingweiSamuel.Camille.SummonerV4.Summoner GetSummonerDetails(string SummonerName)
         {
-            var riotApi = RiotApi.NewInstance("RGAPI-c8c3e2a4-edaf-4c3d-ad4f-dc32d540da9c");
+            var riotApi = RiotApi.NewInstance("RGAPI-0dfa579d-5074-4ec0-8b2b-086df01071c5");
 
-            return await riotApi.SummonerV4.GetBySummonerNameAsync(Region.NA, SummonerName);
+            return riotApi.SummonerV4.GetBySummonerName(Region.NA, SummonerName);
         }
 
     }
