@@ -1,3 +1,5 @@
+using Domain.Common;
+using Domain.Services;
 using Interfaces;
 using LeagueApp.Services;
 using Microsoft.AspNetCore.Builder;
@@ -28,6 +30,7 @@ namespace LeagueApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IRiotApi, RiotService>();
             services.AddSingleton<ISummonerService, SummonerService>();
             services.AddSingleton<IMatchsService, MatchsService>();
 

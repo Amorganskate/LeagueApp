@@ -1,7 +1,7 @@
-﻿using Interfaces;
+﻿using Domain.Common;
+using Interfaces;
 using MingweiSamuel.Camille;
 using MingweiSamuel.Camille.Enums;
-using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +11,16 @@ namespace LeagueApp.Services
 {
     public class SummonerService : ISummonerService
     {
+        IRiotApi _RiotApi;
+
+        public SummonerService(IRiotApi RiotApi)
+        {
+            _RiotApi = RiotApi;
+        }
+
         public MingweiSamuel.Camille.SummonerV4.Summoner GetSummonerDetails(string SummonerName)
         {
-            var riotApi = RiotApi.NewInstance("RGAPI-0dfa579d-5074-4ec0-8b2b-086df01071c5");
+            var riotApi = RiotApi.NewInstance("RGAPI-215170d2-30a8-4dbb-957c-6f58da7a71f0");
 
             return riotApi.SummonerV4.GetBySummonerName(Region.NA, SummonerName);
         }

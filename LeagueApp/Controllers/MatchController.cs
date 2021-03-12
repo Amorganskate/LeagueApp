@@ -25,9 +25,9 @@ namespace LeagueApp.Controllers
         [HttpGet("{AccountId}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Matchlist>))]
-        public async Task<IActionResult> GetMatchList(string AccountId)
+        public IActionResult GetMatchList(string AccountId)
         {
-            var matchList = await matchService.GetMatchList(AccountId);
+            var matchList = matchService.GetMatchList(AccountId);
             if(matchList == null)
             {
                 return NotFound();

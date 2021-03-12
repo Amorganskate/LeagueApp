@@ -8,6 +8,6 @@ namespace Interfaces
 {
     public interface IMatchsService
     {
-        Task<Matchlist> GetMatchList(string AccountId);
+        Matchlist GetMatchList(string AccountId);
     }
 }
