@@ -1,5 +1,4 @@
 ﻿using Interfaces;
-using LeagueApp.Code;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MingweiSamuel.Camille;
