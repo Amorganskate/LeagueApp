@@ -1,14 +1,8 @@
 ﻿using Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MingweiSamuel.Camille;
-using MingweiSamuel.Camille.Enums;
 using MingweiSamuel.Camille.SummonerV4;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 
 namespace LeagueApp.Controllers
 {
