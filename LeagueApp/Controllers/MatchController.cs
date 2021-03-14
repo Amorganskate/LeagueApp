@@ -1,4 +1,5 @@
-﻿using Interfaces;
+﻿using Domain.Entities;
+using Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MingweiSamuel.Camille.MatchV4;
@@ -20,9 +21,16 @@ namespace LeagueApp.Controllers
             this.matchService = summonerService;
         }
 
-        // AccountID: n66wz8wIST776e4rikLAiq1jEGtOZEGRpHN5Rj2tHrCiCu0
-        // Encrypted SummonerID: sM8KVoKcCFVyCXSOjlOci_U0daZiLPKMlF2dSVXAIt9VOFc
-        [HttpGet("{AccountId}")]
+        
+//  "accountId": "n66wz8wIST776e4rikLAiq1jEGtOZEGRpHN5Rj2tHrCiCu0",
+//  "profileIconId": 1113,
+//  "revisionDate": 1615011266000,
+//  "name": "TiltMasterFlex1",
+//  "id": "sM8KVoKcCFVyCXSOjlOci_U0daZiLPKMlF2dSVXAIt9VOFc",
+//  "puuid": "REokuSAlDm8zsmrAMCA6oStMAKFN0mzhnEwOq_sEVVqpVoCtodHCmrg2HxZixeio2I6bb2wJ0LIVpg",
+//  "summonerLevel": 164
+//}
+    [HttpGet("{AccountId}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Matchlist>))]
         public IActionResult GetMatchList(string AccountId)
@@ -34,6 +42,21 @@ namespace LeagueApp.Controllers
             }
 
             return Ok(matchList);
+        }
+
+        [HttpGet("/RankedMatches/{SummonerName}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<RankedMatchDetails>))]
+        public async Task<IActionResult> GetRankedMatchs(string SummonerName)
+        {
+            var RankedMatches = await matchService.GetRankedMatchDetails(SummonerName);
+
+            if (RankedMatches == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(RankedMatches);
         }
     }
 }

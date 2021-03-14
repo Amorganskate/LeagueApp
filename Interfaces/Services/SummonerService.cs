@@ -20,9 +20,7 @@ namespace LeagueApp.Services
 
         public MingweiSamuel.Camille.SummonerV4.Summoner GetSummonerDetails(string SummonerName)
         {
-            var riotApi = RiotApi.NewInstance("RGAPI-215170d2-30a8-4dbb-957c-6f58da7a71f0");
-
-            return riotApi.SummonerV4.GetBySummonerName(Region.NA, SummonerName);
+            return _RiotApi.GetRiotApi().SummonerV4.GetBySummonerName(Region.NA, SummonerName);
         }
 
     }

@@ -1,4 +1,5 @@
 using Domain.Common;
+using Domain.Interfaces;
 using Domain.Services;
 using Interfaces;
 using LeagueApp.Services;
@@ -30,9 +31,10 @@ namespace LeagueApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IRiotApi, RiotService>();
-            services.AddSingleton<ISummonerService, SummonerService>();
-            services.AddSingleton<IMatchsService, MatchsService>();
+            services.AddScoped<IRiotApi, RiotService>();
+            services.AddScoped<ISummonerService, SummonerService>();
+            services.AddScoped<IMatchsService, MatchsService>();
+            services.AddScoped<IMasteryService, MasteryService>();
 
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
                                                                     .AllowAnyMethod()

@@ -19,7 +19,7 @@ namespace LeagueApp.Controllers
 
         // AccountID: n66wz8wIST776e4rikLAiq1jEGtOZEGRpHN5Rj2tHrCiCu0
         // Encrypted SummonerID: sM8KVoKcCFVyCXSOjlOci_U0daZiLPKMlF2dSVXAIt9VOFc
-        [HttpGet]
+        [HttpGet("{SummonerName}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Summoner>))]
         public IActionResult GetSummonerDetails(string SummonerName)
