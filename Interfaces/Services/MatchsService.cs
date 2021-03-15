@@ -25,7 +25,7 @@ namespace LeagueApp.Services
         {
             var riotApi = _RiotApi.GetRiotApi();
 
-            return riotApi.MatchV4.GetMatchlist(Region.NA, AccountId, queue: new[] { 420 });
+            return riotApi.MatchV4.GetMatchlist(Region.NA, AccountId);
         }
 
         public async Task<IEnumerable<RankedMatchDetails>> GetRankedMatchDetails(string SummonerName, int GameCount = 10)
