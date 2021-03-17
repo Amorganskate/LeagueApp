@@ -31,22 +31,7 @@ namespace LeagueApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IRiotApi, RiotService>();
-            services.AddScoped<ISummonerService, SummonerService>();
-            services.AddScoped<IMatchsService, MatchsService>();
-            services.AddScoped<IMasteryService, MasteryService>();
-
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-                                                                    .AllowAnyMethod()
-                                                                     .AllowAnyHeader()));
-            services.AddControllers();
-
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LeagueApp", Version = "v1" });
-                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
-
-            });
+            ConfigureRunServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,6 +56,26 @@ namespace LeagueApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+        }
+
+        private void ConfigureRunServices(IServiceCollection services)
+        {
+            services.AddScoped<IRiotApi, RiotService>();
+            services.AddScoped<ISummonerService, SummonerService>();
+            services.AddScoped<IMatchsService, MatchsService>();
+            services.AddScoped<IMasteryService, MasteryService>();
+
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                                                                    .AllowAnyMethod()
+                                                                     .AllowAnyHeader()));
+            services.AddControllers();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "LeagueApp", Version = "v1" });
+                c.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
+
             });
         }
     }
