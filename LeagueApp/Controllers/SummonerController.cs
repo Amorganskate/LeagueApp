@@ -25,6 +25,7 @@ namespace LeagueApp.Controllers
         public IActionResult GetSummonerDetails(string SummonerName)
         {
             var summonerDetails = summonerService.GetSummonerDetails(SummonerName);
+
             if(summonerDetails == null)
             {
                 return NotFound();
