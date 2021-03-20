@@ -24,7 +24,6 @@ namespace Domain.Entities
             get
             {
                 return (this.ProfileIconId != 0) ? string.Format("http://ddragon.leagueoflegends.com/cdn/9.3.1/img/profileicon/{0}.png", this.ProfileIconId) : "";
-
             }
         }
     }
