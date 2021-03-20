@@ -10,7 +10,7 @@ namespace Domain.Services
     {
         public RiotApi GetRiotApi()
         {
-            return RiotApi.NewInstance("RGAPI-a99d9a73-d03c-4943-9913-6233e3211023");
+            return RiotApi.NewInstance("RGAPI-7549e339-9828-4598-9f1d-b3489fe9a244");
         }
     }
 }

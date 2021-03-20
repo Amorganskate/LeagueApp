@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Threading.Tasks;
-using MingweiSamuel.Camille.SummonerV4;
 
 namespace Interfaces
 {

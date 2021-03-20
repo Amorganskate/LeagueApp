@@ -1,7 +1,7 @@
-﻿using Interfaces;
+﻿using Domain.Entities;
+using Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MingweiSamuel.Camille.SummonerV4;
 using System.Collections.Generic;
 
 namespace LeagueApp.Controllers
@@ -21,7 +21,7 @@ namespace LeagueApp.Controllers
         // Encrypted SummonerID: sM8KVoKcCFVyCXSOjlOci_U0daZiLPKMlF2dSVXAIt9VOFc
         [HttpGet("{SummonerName}")]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Summoner>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Summoner))]
         public IActionResult GetSummonerDetails(string SummonerName)
         {
             var summonerDetails = summonerService.GetSummonerDetails(SummonerName);

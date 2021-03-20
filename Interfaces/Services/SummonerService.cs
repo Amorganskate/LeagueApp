@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Entities;
 using Interfaces;
 using MingweiSamuel.Camille;
 using MingweiSamuel.Camille.Enums;
@@ -18,9 +19,11 @@ namespace LeagueApp.Services
             _RiotApi = RiotApi;
         }
 
-        public MingweiSamuel.Camille.SummonerV4.Summoner GetSummonerDetails(string SummonerName)
+        public Summoner GetSummonerDetails(string SummonerName)
         {
-            return _RiotApi.GetRiotApi().SummonerV4.GetBySummonerName(Region.NA, SummonerName);
+           
+            return new Summoner(_RiotApi.GetRiotApi().SummonerV4.GetBySummonerName(Region.NA, SummonerName));
+
         }
 
     }
